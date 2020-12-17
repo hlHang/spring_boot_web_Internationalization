@@ -11,7 +11,8 @@
     <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/sign-in/">
 
     <!-- Bootstrap core CSS -->
-    <link href="assets/dist/css/bootstrap.css" rel="stylesheet">
+    <link href="asserts/dist/css/bootstrap.css" th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.css}"
+          rel="stylesheet">
 
     <style>
         .bd-placeholder-img {
@@ -30,17 +31,22 @@
         }
     </style>
     <!-- Custom styles for this template -->
-    <link href="assets/css/signin.css" rel="stylesheet">
+    <link href="asserts/css/signin.css" th:href="@{/asserts/css/signin.css}" rel="stylesheet">
 </head>
 <body class="text-center">
-<form class="form-signin">
-    <img class="mb-4" src="assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+<form class="form-signin" th:action="@{/user/login}" method="post">
+    <img class="mb-4" src="asserts/brand/bootstrap-solid.svg" th:src="@{/asserts/brand/bootstrap-solid.svg}" alt=""
+         width="72" height="72">
     <h1 class="h3 mb-3 font-weight-normal" th:text="#{login.tip}">Please sign in</h1>
+
+    <!--/*@thymesVar id="#String" type="ch"*/-->
+    <!--/*@thymesVar id="isEmpty" type="org"*/-->
+    <p style="color: red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
     <label for="inputEmail" class="sr-only" th:text="#{login.email}">Email address</label>
-    <input type="email" id="inputEmail" class="form-control" placeholder="Email address" th:placeholder="#{login.email}"
-           required autofocus>
+    <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address"
+           th:placeholder="#{login.email}" required autofocus>
     <label for="inputPassword" class="sr-only" th:text="#{login.password}">Password</label>
-    <input type="password" id="inputPassword" class="form-control" placeholder="Password"
+    <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password"
            th:placeholder="#{login.password}" required>
     <div class="checkbox mb-3">
         <label>
